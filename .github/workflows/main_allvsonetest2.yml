@@ -24,7 +24,15 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
-
+        
+      - name: Update database
+        run: |
+          dotnet tool install --global dotnet-ef
+          dotnet tool restore
+          dotnet ef database update -c DataContext -p MyProj -s MyProjFactory
+        env:
+          ASPNETCORE_ENVIRONMENT: Development
+          
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
