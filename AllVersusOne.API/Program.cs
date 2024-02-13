@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.RegisterDatabaseConventions(builder.Configuration);
+builder.Services.RegisterDatabaseConventions(builder.Configuration, builder.Environment);
 builder.Services.RegisterServiceConventions(builder.Configuration);
 
 builder.Services.AddControllers().AddJsonOptions(options =>
