@@ -18,10 +18,10 @@ namespace AllVersusOne.API.Conventions
             }
             else
             {*/
-            serviceCollection.AddDbContext<DatabaseContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING")));
-
+            //serviceCollection.AddDbContext<DatabaseContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING")));
             //}
-            // serviceCollection.AddDbContext<DatabaseContext>(options => options.UseSqlServer(configuration.GetConnectionString("Database")));
+
+            serviceCollection.AddDbContext<DatabaseContext>(options => options.UseSqlServer(configuration.GetConnectionString("Database")));
             
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<IUnitOfWorkManager, UnitOfWorkManager>();
