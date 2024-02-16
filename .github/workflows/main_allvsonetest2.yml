@@ -24,14 +24,20 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
-        
-      - name: Update database
+
+      - name: Install EF Tool
         run: |
-          dotnet tool install --global dotnet-ef
-          dotnet tool restore
-          dotnet ef database update -c DatabaseContext -p AllVersusOne.Infrastructure --startup-project AllVersusOne.API --connection ${{ secrets.AZURE_SQL_CONNECTIONSTRING }}
-        env:
-          ASPNETCORE_ENVIRONMENT: Test
+          dotnet new tool-manifest
+          dotnet tool install dotnet-ef   
+
+      - name: Generate EF migration script
+        run: dotnet ef migrations script --idempotent -c DatabaseContext -p AllVersusOne.Infrastructure --startup-project AllVersusOne.API --output ${{env.DOTNET_ROOT}}/AllVersusOne/migrate.sql
+        
+      - name: Apply EF migration script
+        uses: Azure/sql-action@v1.2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL_CONNECTIONSTRING }}
+          sql-file: ./migrate.sql
           
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
