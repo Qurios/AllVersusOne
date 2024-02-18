@@ -28,7 +28,7 @@ jobs:
         username: ${{ secrets.AllVersusOneAPI_USERNAME_0290 }}
         password: ${{ secrets.AllVersusOneAPI_PASSWORD_0290 }}
     - name: Build and push container image to registry
-      run: dotnet publish -c Release -r linux-x64 -p:PublishProfile=DefaultContainer -p:ContainerImageTag=${{ github.sha }} --no-self-contained -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }} -bl
+      run: dotnet publish -c Release -r linux-x64 -p:PublishProfile=allversusoneapi-app-202402181343.pubxml -p:ContainerImageTag=${{ github.sha }} --no-self-contained -p:ContainerRegistry=${{ env.CONTAINER_REGISTRY_LOGIN_SERVER }} -bl
     - name: Upload binlog for investigation
       uses: actions/upload-artifact@v3
       with:
@@ -59,4 +59,4 @@ jobs:
       run: | 
         dotnet tool install --global dotnet-ef
         dotnet tool restore
-        dotnet ef database update -p DotNetCoreSqlDb --connection '${{ secrets.DBConnection }}'
+        dotnet ef database update -p AllVersusOne.Infrastructure -s AllVersusOne.API --connection '${{ secrets.DBConnection }}'
