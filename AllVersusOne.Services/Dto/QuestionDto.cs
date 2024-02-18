@@ -10,5 +10,5 @@ public class QuestionDto
 
     public int LowerLimit { get; set; }
 
-    public int? CorrectAnswer { get; set; }
+    public int CorrectAnswer { get; set; }
 }

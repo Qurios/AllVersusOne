@@ -5,7 +5,7 @@ namespace AllVersusOne.Infrastructure.DataAccess
 {
     public class UnitOfWorkManager : IUnitOfWorkManager
     {
-        private IUnitOfWork? _unitOfWork;
+        private IUnitOfWork _unitOfWork;
 
         public UnitOfWorkManager(
             DatabaseContext databaseContext,
