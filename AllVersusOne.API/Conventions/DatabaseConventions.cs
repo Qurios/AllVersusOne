@@ -11,18 +11,17 @@ namespace AllVersusOne.API.Conventions
     {
         public static IServiceCollection RegisterDatabaseConventions(this IServiceCollection serviceCollection, IConfiguration configuration, IWebHostEnvironment environment)
         {
-            // serviceCollection.AddEntityFrameworkSqlite().AddDbContext<DatabaseContext>(options => options.UseSqlite(configuration.GetConnectionString("Database")));
-            /*if (environment.IsDevelopment())
+            if (environment.IsDevelopment())
             {
-                serviceCollection.AddDbContext<DatabaseContext>(options => options.UseNpgsql(configuration.GetConnectionString("Database")));
+                serviceCollection.AddDbContext<DatabaseContext>(options =>
+                    options.UseSqlServer(configuration.GetConnectionString("Database")));
             }
             else
-            {*/
-            //serviceCollection.AddDbContext<DatabaseContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING")));
-            //}
+            {
+                serviceCollection.AddDbContext<DatabaseContext>(options =>
+                    options.UseSqlServer(Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING")));
+            }
 
-            serviceCollection.AddDbContext<DatabaseContext>(options => options.UseSqlServer(configuration.GetConnectionString("Database")));
-            
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<IUnitOfWorkManager, UnitOfWorkManager>();
 

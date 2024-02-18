@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "postgresql1": {
+      "ignored": "true",
+      "type": "postgresql"
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "",
+      "secretStore": null,
+      "resourceId": null,
+      "type": "mssql.local",
+      "connectionId": "ConnectionStrings:Database"
+    },
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.ServiceLinker/locations/northeurope/connectors/ConnectionStringsAzureDatabase_D40B4D4301",
+      "secretStore": null,
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/allversusone-apidbserver/databases/AllVersusOne.API_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:AzureDatabase",
+      "dynamicId": null
+    }
+  }
+}
