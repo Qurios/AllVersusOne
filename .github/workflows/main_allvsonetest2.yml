@@ -38,7 +38,7 @@ jobs:
         uses: Azure/sql-action@v1.2
         with:
           connection-string: ${{ secrets.AZURE_SQL_CONNECTIONSTRING }}
-          sql-file: ./migrate.sql
+          sql-file: ${{env.DOTNET_ROOT}}/AllVersusOne/migrate.sql
           
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
