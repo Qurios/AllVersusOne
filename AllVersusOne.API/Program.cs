@@ -22,16 +22,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 var app = builder.Build();
-using (var scope = builder.Services.BuildServiceProvider().CreateScope())
-{
-    using (var dbContext = scope.ServiceProvider.GetRequiredService<DatabaseContext>())
-    {
-        if (dbContext.Database.GetPendingMigrations().Any())
-        {
-            dbContext.Database.Migrate();
-        }
-    }
-}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
