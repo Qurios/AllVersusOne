@@ -2,8 +2,6 @@
 using AllVersusOne.Infrastructure.DataAccess;
 using AllVersusOne.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Options;
 
 namespace AllVersusOne.API.Conventions
 {

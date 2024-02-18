@@ -2,27 +2,20 @@
 
 namespace AllVersusOne.Infrastructure.DataAccess
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork(DatabaseContext context) : IUnitOfWork
     {
-        private readonly DatabaseContext _context;
-
         private bool _disposed = false;
-
-        public UnitOfWork(DatabaseContext context)
-        {
-            this._context = context;
-        }
 
         public async Task SaveAsync()
         {
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
         protected virtual void Dispose(bool disposing)
         {
             if (!this._disposed && disposing)
             {
-                _context.Dispose();
+                context.Dispose();
             }
             this._disposed = true;
         }

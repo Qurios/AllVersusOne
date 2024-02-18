@@ -5,18 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AllVersusOne.Infrastructure.DataAccess
 {
-    public class DatabaseRepository<TEntity> : IRepository<TEntity>
+    public class DatabaseRepository<TEntity>(DatabaseContext context) : IRepository<TEntity>
         where TEntity : class, IEntity
     {
-        public DatabaseRepository(DatabaseContext context)
-        {
-            Context = context;
-            DbSet = context.Set<TEntity>();
-
-        }
-
-        protected DatabaseContext Context { get; }
-        protected DbSet<TEntity> DbSet { get; }
+        protected DatabaseContext Context { get; } = context;
+        protected DbSet<TEntity> DbSet { get; } = context.Set<TEntity>();
 
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,

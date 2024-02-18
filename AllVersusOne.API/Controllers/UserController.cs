@@ -8,26 +8,19 @@ namespace AllVersusOne.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(IUserService userService) : ControllerBase
     {
-        private readonly IUserService _userService;
-
-        public UserController(IUserService userService)
-        {
-            this._userService = userService;
-        }
-
         [HttpPost("create-user")]
         public async Task<int> AddNewUser([FromBody] CreateUserDto user)
         {
-            var dbUser = await _userService.CreateUser(user.Name ?? "", user.Group ?? "", UserType.User);
+            var dbUser = await userService.CreateUser(user.Name ?? "", user.Group ?? "", UserType.User);
             return dbUser.Id;
         }
 
         [HttpPost("get-users")]
         public async Task<IEnumerable<UserDto>> GetUsers()
         {
-            var dbUsers = await _userService.GetUsers();
+            var dbUsers = await userService.GetUsers();
             return dbUsers.Select(u => new UserDto
             {
                 Id = u.Id,

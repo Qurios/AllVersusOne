@@ -1,6 +1,5 @@
 ﻿using AllVersusOne.Services.Dto;
 using AllVersusOne.Services.GameService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AllVersusOne.API.Controllers

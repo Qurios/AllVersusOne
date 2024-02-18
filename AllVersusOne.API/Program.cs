@@ -1,7 +1,5 @@
 using AllVersusOne.API.Conventions;
 using System.Text.Json.Serialization;
-using AllVersusOne.Infrastructure.Database;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -3,5 +3,5 @@
 public class GameRoundDto
 {
     public int GameRoundId { get; set; }
-    public QuestionDto Question { get; set; }
+    public QuestionDto? Question { get; set; }
 }
