@@ -76,6 +76,6 @@ jobs:
         az logout
     - name: Run EF 
       run: | 
-        dotnet tool install --global dotnet-ef --version ${{ env.DOTNET_CORE_VERSION }}
+        dotnet tool install --global dotnet-ef --version 8.0.0
         dotnet tool restore
         dotnet ef database update -c DatabaseContext -p AllVersusOne.Infrastructure -s AllVersusOne.API --connection '${{ secrets.DBConnection }}'
