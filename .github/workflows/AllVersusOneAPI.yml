@@ -12,7 +12,7 @@ env:
   AZURE_APIM_API_ID: AllVersusOneAPI
   AZURE_APIM_APPSERVICEURL: https://allversusoneapi.azurewebsites.net
   SWASHBUCLE_ASPNET_CORE_CLI_PACKAGE_VERSION: 6.5.0
-  SWASHBUCKLE_DOTNET_CORE_VERSION: 3.1.x
+  SWASHBUCKLE_DOTNET_CORE_VERSION: 8.0.x
   API_IMPORT_SPECIFICATION_PATH: AllVersusOne.API/publish/swagger.json
   API_IMPORT_DLL: AllVersusOne.API/bin/Release/net8.0/AllVersusOne.API.dll
   API_IMPORT_VERSION: v1
@@ -76,6 +76,6 @@ jobs:
         az logout
     - name: Run EF 
       run: | 
-        dotnet tool install --global dotnet-ef
+        dotnet tool install --global dotnet-ef  --version 8.0.1
         dotnet tool restore
         dotnet ef database update -p AllVersusOne.Infrastructure -s AllVersusOne.API --connection '${{ secrets.DBConnection }}'
