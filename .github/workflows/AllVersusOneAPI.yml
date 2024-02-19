@@ -17,7 +17,7 @@ env:
   API_IMPORT_DLL: AllVersusOne.API/bin/Release/net8.0/AllVersusOne.API.dll
   API_IMPORT_VERSION: v1
   CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 8.0.x
+  DOTNET_CORE_VERSION: 8.0.2
   WORKING_DIRECTORY: AllVersusOne.API
 jobs:
   build:
