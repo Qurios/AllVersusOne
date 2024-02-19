@@ -76,11 +76,9 @@ jobs:
         az logout
     - name: Run EF 
       run: | 
-        cd .. 
-        ls
-        cd .. 
         ls
         dotnet new tool-manifest
         dotnet tool install --global dotnet-ef --version 8.0.0
         dotnet tool restore
         dotnet ef database update -c DatabaseContext -p AllVersusOne.Infrastructure -s AllVersusOne.API --connection '${{ secrets.DBConnection }}'
+      working-directory: ${{ github.workspace }}
