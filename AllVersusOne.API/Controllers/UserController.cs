@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AllVersusOne.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController(IUserService userService) : ControllerBase
     {
