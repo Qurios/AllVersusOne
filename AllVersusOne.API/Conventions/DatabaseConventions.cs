@@ -2,6 +2,7 @@
 using AllVersusOne.Infrastructure.DataAccess;
 using AllVersusOne.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace AllVersusOne.API.Conventions
 {
@@ -17,7 +18,7 @@ namespace AllVersusOne.API.Conventions
             else
             {
                 serviceCollection.AddDbContext<DatabaseContext>(options =>
-                    options.UseSqlServer(Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING")));
+                    options.UseSqlServer(configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
             }
 
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
