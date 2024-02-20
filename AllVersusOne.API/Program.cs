@@ -13,6 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.RegisterDatabaseConventions(builder.Configuration, builder.Environment);
 builder.Services.RegisterServiceConventions(builder.Configuration);
 
+builder.Services.AddHealthChecks();
+
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -25,6 +27,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
 }
+
+app.MapHealthChecks("/health");
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
